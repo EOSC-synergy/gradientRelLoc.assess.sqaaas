@@ -1,0 +1,70 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/stevenjgibbons/gradientRelLoc:
+      branch: main
+      repo: https://github.com/stevenjgibbons/gradientRelLoc
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-vermilion-frog.sh
+        container: qc.acc_squirrely-brass-goose
+  QC.Doc:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuzzy-gamboge-maltese.sh
+        container: qc.doc_snoopy-olive-olm
+      github.com/stevenjgibbons/gradientRelLoc git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-razzmatazz-heron.sh
+        container: qc.doc_bumpy-azure-cattle
+      github.com/stevenjgibbons/gradientRelLoc markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-chartreuse-dachshund.sh
+        container: qc.doc_gloppy-rust-weasel
+  QC.Lic:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-pink-cheetah.sh
+        container: qc.lic_sickly-bistre-cow
+  QC.Met:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-ecru-olm.sh
+        container: qc.met_cheeky-tomato-hornet
+  QC.Sec:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-amethyst-fowl.sh
+        container: qc.sec_chewy-eggplant-bee
+  QC.Sty:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-cobalt-liger.sh
+        container: qc.sty_homey-zucchini-eleuth
+  QC.Uni:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-cardinal-chinchilla.sh
+        container: qc.uni_slimy-cerise-penguin
+  QC.Ver:
+    repos:
+      github.com/stevenjgibbons/gradientRelLoc get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-champagne-beetle.sh
+        container: qc.ver_trippy-lemon-affenpinscher
+timeout: 5400
